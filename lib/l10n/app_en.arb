@@ -1,0 +1,25 @@
+{
+  "appBarTitle": "AD(H)D Prototype",
+  "dashboardHello": "Hello, {userName}!",
+    "@dashboardHello": {
+      "placeholders": {
+        "userName": {
+          "type": "String",
+          "example": "Daniel"
+        }
+      }
+    },
+    "dashboardNotebookTitle":"NOTEBOOKS",
+    "dashboardTodayTasksTitle":"TODAY'S TASKS",
+    "dashboardDeleteTaskConfirmDialogTitle":"Confirm",
+    "dashboardDeleteTaskConfirmDialogContent":"Are you sure you want to delete this task?",
+    "dashboardDeleteTaskConfirmDialogCancel":"Cancel",
+    "dashboardDeleteTaskConfirmDialogDelete":"Delete",
+    "dashboardDeleteTaskSuccess":"Task deleted successfully.",
+    "dashboardTaskSlidableToolTipBackToBacklog":"Move task back to backlog",
+    "dashboardTaskSlidableToolTipDelete":"Delete task",
+    "dashboardTaskSlidableToolTipMarkAsDone":"Complete task",
+    "notebookCardHeaderTaskSingular":"task",
+    "notebookCardHeaderTaskPlural":"tasks",
+    "notebookCardHeaderOpen":"open"
+}
