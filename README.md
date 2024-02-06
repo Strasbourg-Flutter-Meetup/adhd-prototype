@@ -53,7 +53,7 @@ And the list should include tasks from all backlogs
 Scenario: User views progress bars for each backlog
 Given the user is on the dashboard
 When the user looks at the section for each backlog
-Then the user should see a progress bar indicating the completion rate of tasks in each backlog
+Then the user should see a progress bar indicating the completion rate of tasks for the current day
 
 #### Notification Center
 
