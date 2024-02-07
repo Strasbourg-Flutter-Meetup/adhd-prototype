@@ -37,7 +37,7 @@ void main() {
     dashboardTodayTasksDetails = DashboardTodayTasksDetails(
       taskId: taskId,
       task: taskDescription,
-      notebookId: notebookId,
+      notebookId: notebookId, rank: 'AAAA',
     );
 
     // Then: the instance should have the task ID "task123", the task description "Finish report", and the notebook ID "nb123"

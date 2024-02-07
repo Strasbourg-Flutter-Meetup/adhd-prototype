@@ -10,6 +10,10 @@ import 'package:adhd_prototype/features/dashboard/presentation/blocs/dashboard_s
 import 'package:adhd_prototype/features/dashboard/presentation/screens/dashboard.dart';
 import 'package:adhd_prototype/shared/dependency_injection/injections.dart';
 import 'package:adhd_prototype/shared/dependency_injection/injections/injection_cubits.dart';
+import 'package:adhd_prototype/shared/isar_db/isar_db.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/current_day_task_repository.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/notebook_repository.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,15 +21,25 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('Dashboard widget displays correctly',
       (WidgetTester tester) async {
-        configureGetItInjections(
-          injectionConfigurations: [
-            InjectionCubits(),
-          ],
-        );
+    configureGetItInjections(
+      injectionConfigurations: [
+        InjectionCubits(),
+      ],
+    );
 
     // Create a DashboardBloc and initialize it with a specific state (if needed)
     final dashboardBloc = DashboardBloc(
-        const DashboardState.initial()); // You may need to customize this.
+      const DashboardState.initial(),
+      userRepository: UserRepository(
+        isarDB: IsarDB.instance,
+      ),
+      notebookRepository: NotebookRepository(
+        isarDB: IsarDB.instance,
+      ),
+      currentDayTaskRepository: CurrentDayTaskRepository(
+        isarDB: IsarDB.instance,
+      ),
+    ); // You may need to customize this.
 
     // Wrap the Dashboard widget with a MaterialApp and a BlocProvider
     await tester.pumpWidget(
