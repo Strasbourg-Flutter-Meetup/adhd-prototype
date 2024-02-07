@@ -12,14 +12,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'shared/routing/go_router_config.dart';
 
+/// The [AdhdPrototype] widget is the root widget of the ADHD Prototype application.
 class AdhdPrototype extends StatelessWidget {
+  /// Constructs an [AdhdPrototype] widget.
   const AdhdPrototype({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
       light: FlexThemeData.light(
-        scheme: FlexScheme.cyanM3,
+        scheme: FlexScheme.tealM3,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 7,
         subThemesData: const FlexSubThemesData(
@@ -36,7 +38,7 @@ class AdhdPrototype extends StatelessWidget {
         fontFamily: 'Montserrat',
       ),
       dark: FlexThemeData.dark(
-        scheme: FlexScheme.cyanM3,
+        scheme: FlexScheme.tealM3,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
         blendLevel: 13,
         subThemesData: const FlexSubThemesData(

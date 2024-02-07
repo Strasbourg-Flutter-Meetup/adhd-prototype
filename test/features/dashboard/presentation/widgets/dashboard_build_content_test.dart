@@ -63,9 +63,9 @@ void main() {
       when(mockData.notebookDetails).thenReturn([]);
       when(mockData.todayTasksDetails).thenReturn([
         const DashboardTodayTasksDetails(
-            taskId: '1', task: 'Task 1', notebookId: '1'),
+            taskId: '1', task: 'Task 1', notebookId: '1', rank: 'AAAA'),
         const DashboardTodayTasksDetails(
-            taskId: '2', task: 'Task 2', notebookId: '2'),
+            taskId: '2', task: 'Task 2', notebookId: '2', rank: 'BBBB'),
       ]);
 
       final widget = MaterialApp(

@@ -1,5 +1,8 @@
 import 'package:adhd_prototype/features/dashboard/presentation/blocs/dashboard_events.dart';
 import 'package:adhd_prototype/features/dashboard/presentation/blocs/dashboard_state.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/current_day_task_repository.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/notebook_repository.dart';
+import 'package:adhd_prototype/shared/isar_db/repositories/user_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/dashboard_filter_details.dart';
@@ -9,9 +12,21 @@ import '../../models/dashboard_today_tasks_details.dart';
 /// The [DashboardBloc] class is responsible for managing the state and logic
 /// of the dashboard feature in your application.
 class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
-  DashboardBloc(super.initialState) {
+  DashboardBloc(
+    super.initialState, {
+    required UserRepository userRepository,
+    required NotebookRepository notebookRepository,
+    required CurrentDayTaskRepository currentDayTaskRepository,
+  })  : _userRepository = userRepository,
+        _notebookRepository = notebookRepository,
+        _currentDayTaskRepository = currentDayTaskRepository {
     on<DashboardInitialize>(_onInitialize);
   }
+
+  final UserRepository _userRepository;
+  final NotebookRepository _notebookRepository;
+
+  final CurrentDayTaskRepository _currentDayTaskRepository;
 
   DashboardStateData? _stateData;
 
@@ -21,7 +36,7 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
 
   List<DashboardTodayTasksDetails> _todayTasksDetails = [];
 
-  List<DashboardFilterDetails> _filterDetails = [];
+  final List<DashboardFilterDetails> _filterDetails = [];
 
   /// This method is called when the [DashboardInitialize] event is dispatched
   /// to initialize the dashboard state.
@@ -30,47 +45,49 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
   /// notebook details, and today's tasks details.
   Future<void> _onInitialize(
       DashboardInitialize event, Emitter<DashboardState> emit) async {
-    _userName = 'Daniel';
-    _notebookDetails = [
-      const DashboardNotebookDetails(
-        notebookId: 'notebookId1',
-        notebookName: 'Private',
-        progress: 0.8,
-        openTasks: 1,
-      ),
-      const DashboardNotebookDetails(
-        notebookId: 'notebookId2',
-        notebookName: 'Job',
-        progress: 0.3,
-        openTasks: 5,
-      ),
-      const DashboardNotebookDetails(
-        notebookId: 'notebookId3',
-        notebookName: 'Strasbourg Flutter Meetup Group',
-        progress: 0.4,
-        openTasks: 3,
-      )
-    ];
-    _todayTasksDetails = [
-      const DashboardTodayTasksDetails(
-        taskId: '1',
-        task: 'task 1',
-        notebookId: 'notebook name 1',
-      ),
-      const DashboardTodayTasksDetails(
-        taskId: '2',
-        task: 'task 2',
-        notebookId: 'notebook name 2',
-      ),
-      const DashboardTodayTasksDetails(
-        taskId: '3',
-        task: 'task 3',
-        notebookId: 'notebook name 3',
-      ),
-    ];
-    _filterDetails = [];
+    await _fetchUserData();
+    await _fetchNotebookData();
+    await _fetchTodayTasksData();
     _updateStateData();
     emit(DashboardState.initialized(data: _stateData));
+  }
+
+  Future<void> _fetchUserData() async {
+    final results = await _userRepository.getAll();
+    _userName = results?.last.username ?? 'Please add a username!';
+  }
+
+  Future<void> _fetchNotebookData() async {
+    final notebooks = await _notebookRepository.getAll();
+    _notebookDetails = notebooks
+            ?.map(
+              (notebook) => DashboardNotebookDetails(
+                notebookId: notebook.notebookId.toString(),
+                notebookName: notebook.title ?? '',
+                progress: 0.0,
+                openTasks: 0,
+                rank: notebook.rank ?? '',
+              ),
+            )
+            .toList() ??
+        [];
+    _notebookDetails.sort((a, b) => a.rank.compareTo(b.rank));
+  }
+
+  Future<void> _fetchTodayTasksData() async {
+    final currentDayTasks =
+        await _currentDayTaskRepository.loadCurrentDayTasksAndRelatedData();
+    _todayTasksDetails = currentDayTasks
+        .map(
+          (task) => DashboardTodayTasksDetails(
+            taskId: task.taskId.toString(),
+            task: task.task ?? '',
+            notebookId: task.notebookId.toString(),
+            rank: task.rank ?? '',
+          ),
+        )
+        .toList();
+    _todayTasksDetails.sort((a, b) => a.rank.compareTo(b.rank));
   }
 
   /// This private method updates the [_stateData] with the current values

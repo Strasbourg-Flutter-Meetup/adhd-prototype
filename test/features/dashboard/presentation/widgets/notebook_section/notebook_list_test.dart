@@ -20,13 +20,13 @@ void main() {
         notebookId: 'notebookId1',
         notebookName: 'Private',
         progress: 0.8,
-        openTasks: 1,
+        openTasks: 1, rank: 'AAAA',
       ),
       const DashboardNotebookDetails(
         notebookId: 'notebookId2',
         notebookName: 'Job',
         progress: 0.3,
-        openTasks: 5,
+        openTasks: 5, rank: 'BBBB',
       ),
     ];
 

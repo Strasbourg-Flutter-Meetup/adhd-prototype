@@ -40,7 +40,7 @@ void main() {
       notebookId: notebookId,
       notebookName: notebookName,
       progress: progress,
-      openTasks: openTasks,
+      openTasks: openTasks, rank: 'AAAA',
     );
 
     // Then: the instance should have the notebook ID "nb123", the notebook name "Physics", progress at 75.0, and 5 open tasks
