@@ -7,6 +7,6 @@
 // 11.11.2023 17:43
 /// An enumeration representing global events that can be published and
 /// subscribed to on the global event bus.
-enum GlobalEvent {
-  themeModeChanged,
-}
+abstract class GlobalEvent {}
+
+class UpdateNotebookListOnDashboard extends GlobalEvent {}

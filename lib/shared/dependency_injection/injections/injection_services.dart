@@ -8,6 +8,7 @@
 
 import 'package:adhd_prototype/bootstrap.dart';
 import 'package:adhd_prototype/shared/isar_db/isar_db.dart';
+import 'package:adhd_prototype/shared/isar_db/ranking/rank_manager.dart';
 
 import '../injections.dart';
 import 'injection_configuration.dart';
@@ -15,13 +16,17 @@ import 'injection_configuration.dart';
 /// The [InjectionServices] class is responsible for configuring dependency injections
 /// related to service classes using the GetIt service locator.
 class InjectionServices extends InjectionConfiguration {
-
   /// Configures dependency injections for service classes using GetIt.
   @override
   // ignore: long-method
   void configureGetItInjections() {
     getIt.registerFactory<Bootstrap>(
-          () => BootstrapImpl(isarDB: getIt.get<IsarDB>()),
+      () => BootstrapImpl(
+        isarDB: getIt.get<IsarDB>(),
+      ),
+    );
+    getIt.registerFactory<RankManager>(
+      () => RankManager(),
     );
   }
 }

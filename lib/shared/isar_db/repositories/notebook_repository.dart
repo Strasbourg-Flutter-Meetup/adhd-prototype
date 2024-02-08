@@ -21,14 +21,14 @@ class NotebookRepository implements IRepository<Notebook> {
 
   @override
   Future<Id?> create(Notebook notebook) async {
-    return isarDB.isar?.writeTxn(() async {
-      return isarDB.isar?.notebooks.put(notebook);
+    return await isarDB.isar?.writeTxn(() async {
+      return await isarDB.isar?.notebooks.put(notebook);
     });
   }
 
   @override
   Future<Notebook?> getById(Id notebookId) async {
-    return isarDB.isar?.notebooks.get(notebookId);
+    return await isarDB.isar?.notebooks.get(notebookId);
   }
 
   @override
@@ -47,6 +47,6 @@ class NotebookRepository implements IRepository<Notebook> {
 
   @override
   Future<List<Notebook>?> getAll() async {
-    return isarDB.isar?.notebooks.where().findAll();
+    return await isarDB.isar?.notebooks.where().findAll();
   }
 }

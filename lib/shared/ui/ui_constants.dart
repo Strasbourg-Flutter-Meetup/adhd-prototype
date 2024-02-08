@@ -38,4 +38,9 @@ class UIConstants {
   static const double mdcDrawerHeaderHeight = 128.0;
 
   static const double dashboardHeaderImageTextMaxWidth = 192.0;
+
+  static const double appbarDefaultHeight = 56.0;
+
+  static const double navigationBarDefaultHeight = 80.0;
+
 }

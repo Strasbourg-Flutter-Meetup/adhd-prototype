@@ -21,5 +21,9 @@
     "dashboardTaskSlidableToolTipMarkAsDone":"Complete task",
     "notebookCardHeaderTaskSingular":"task",
     "notebookCardHeaderTaskPlural":"tasks",
-    "notebookCardHeaderOpen":"open"
+    "notebookCardHeaderOpen":"open",
+    "dashboardModalTitle":"Add a new notebook",
+    "dashboardModalTextFieldHint":"Notebook name",
+    "dashboardModalValidatorText":"Please enter a notebook name",
+    "dashboardModalButtonAdd":"Add"
 }

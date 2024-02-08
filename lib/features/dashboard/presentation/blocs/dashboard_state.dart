@@ -7,6 +7,7 @@
 // 02/02/2024 13:52
 import 'package:equatable/equatable.dart';
 
+import '../../../../shared/isar_db/models/notebook.dart';
 import '../../../../shared/state_management/states.dart';
 import '../../models/dashboard_filter_details.dart';
 import '../../models/dashboard_notebook_details.dart';
@@ -22,6 +23,7 @@ class DashboardStateData extends Equatable {
     required this.notebookDetails,
     required this.todayTasksDetails,
     required this.filterDetails,
+    required this.notebooks,
   });
 
   /// The username associated with the dashboard.
@@ -36,13 +38,16 @@ class DashboardStateData extends Equatable {
   /// A list of dashboard filter details.
   final List<DashboardFilterDetails> filterDetails;
 
+  final List<Notebook> notebooks;
+
   @override
   List<Object?> get props => [
-    userName,
-    notebookDetails,
-    todayTasksDetails,
-    filterDetails,
-  ];
+        userName,
+        notebookDetails,
+        todayTasksDetails,
+        filterDetails,
+        notebooks,
+      ];
 }
 
 /// The [DashboardState] type represents the state of the dashboard feature

@@ -6,21 +6,23 @@
 // ID: 20240206083227
 // 06/02/2024 08:32
 
+import 'package:adhd_prototype/shared/routing/router.dart';
 import 'package:flutter/material.dart';
 
 import 'notebook_card_header.dart';
 import 'notebook_card_progress.dart';
-
 
 /// The [NotebookCard] widget is responsible for displaying a card
 /// representing a notebook in the dashboard. It shows details such as the
 /// notebook name, progress, and the number of open tasks.
 class NotebookCard extends StatelessWidget {
   /// Constructs a [NotebookCard] widget with the specified properties.
-  const NotebookCard({super.key,
+  const NotebookCard({
+    super.key,
     required this.notebookName,
     required this.progress,
     required this.openTasks,
+    required this.notebookId,
   });
 
   /// The name of the notebook.
@@ -32,6 +34,8 @@ class NotebookCard extends StatelessWidget {
   /// The number of open tasks within the notebook.
   final int openTasks;
 
+  final int notebookId;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -40,7 +44,7 @@ class NotebookCard extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 6.0),
         child: Card(
           child: ListTile(
-            onTap: () {},
+            onTap: () => routeToNotebook(notebookId: notebookId),
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

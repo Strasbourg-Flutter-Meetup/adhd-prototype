@@ -21,7 +21,7 @@ class DashboardNotebookDetails {
   });
 
   /// The unique identifier of the notebook.
-  final String notebookId;
+  final int notebookId;
 
   /// The name of the notebook.
   final String notebookName;
