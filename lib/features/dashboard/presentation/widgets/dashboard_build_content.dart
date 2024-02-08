@@ -38,39 +38,55 @@ class DashboardBuildContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
     return SizedBox(
       height: MediaQuery.of(context).size.height - 56.0,
       child: Stack(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.topCenter,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.60,
-            child: CustomPaint(
-              size: Size(
-                MediaQuery.of(context).size.width,
-                300,
+          RotatedBox(
+            quarterTurns: 2,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: CustomPaint(
+                size: Size(
+                  MediaQuery.of(context).size.width,
+                  300,
+                ),
+                painter:
+                    CurvePainter(MediaQuery.of(context).size.width, context),
               ),
-              painter: CurvePainter(MediaQuery.of(context).size.width, context),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.47,
-            child: CustomPaint(
-              size: Size(
-                MediaQuery.of(context).size.width,
-                300,
+          RotatedBox(
+            quarterTurns: 2,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.08,
+              child: CustomPaint(
+                size: Size(
+                  MediaQuery.of(context).size.width,
+                  300,
+                ),
+                painter: CurvePainter(
+                    MediaQuery.of(context).size.width / 4, context),
               ),
-              painter: CurvePainter(MediaQuery.of(context).size.width / 4, context),
             ),
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.52,
-            child: CustomPaint(
-              size: Size(
-                MediaQuery.of(context).size.width,
-                300,
+          RotatedBox(
+            quarterTurns: 2,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.17,
+              child: CustomPaint(
+                size: Size(
+                  MediaQuery.of(context).size.width,
+                  300,
+                ),
+                painter: CurvePainter(
+                    MediaQuery.of(context).size.width * 2.3, context),
               ),
-              painter: CurvePainter(MediaQuery.of(context).size.width * 2.3, context),
             ),
           ),
           Positioned(
@@ -83,7 +99,9 @@ class DashboardBuildContent extends StatelessWidget {
                 const SizedBox(height: 48.0),
                 DashboardGreeting(userName: data.userName),
                 const SizedBox(height: 48.0),
-                const NotebookSection(),
+                NotebookSection(
+                  notebooks: data.notebooks,
+                ),
                 const SizedBox(height: 12.0),
                 NotebookList(
                   notebookDetails: data.notebookDetails,

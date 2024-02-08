@@ -44,6 +44,7 @@ class AppBarTemplate extends StatelessWidget implements PreferredSizeWidget {
         child: LayoutBuilder(
           builder: (context, constraints) {
             return AppBar(
+              backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(43),
               // Display either a back button (on mobile) or an account tree icon.
               leading: !kIsWeb && !isDashboard
                   ? const BackButton()

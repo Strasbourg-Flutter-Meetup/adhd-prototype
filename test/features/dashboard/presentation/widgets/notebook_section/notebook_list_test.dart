@@ -17,13 +17,13 @@ void main() {
     // Arrange
     final List<DashboardNotebookDetails> notebookDetailsList = [
       const DashboardNotebookDetails(
-        notebookId: 'notebookId1',
+        notebookId: 1,
         notebookName: 'Private',
         progress: 0.8,
         openTasks: 1, rank: 'AAAA',
       ),
       const DashboardNotebookDetails(
-        notebookId: 'notebookId2',
+        notebookId: 2,
         notebookName: 'Job',
         progress: 0.3,
         openTasks: 5, rank: 'BBBB',

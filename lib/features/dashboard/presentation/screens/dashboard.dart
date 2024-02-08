@@ -21,17 +21,16 @@ import '../widgets/dashboard_build_content.dart';
 /// feature in your application. It initializes the [DashboardBloc] and
 /// triggers the [DashboardInitialize] event to set up the dashboard's initial state.
 class Dashboard extends StatelessWidget {
-  const Dashboard({super.key,
+  const Dashboard({
+    super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider<DashboardBloc>(
-      create: (context) =>
-      getIt.get<DashboardBloc>()..add(DashboardInitialize()),
-      child: const _DashboardContent(),
-    );
-  }
+  Widget build(BuildContext context) => BlocProvider<DashboardBloc>(
+        create: (context) =>
+            getIt.get<DashboardBloc>()..add(DashboardInitialize()),
+        child: const _DashboardContent(),
+      );
 }
 
 /// The [_DashboardContent] widget is the main content of the dashboard feature.

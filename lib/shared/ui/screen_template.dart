@@ -31,6 +31,8 @@ class ScreenTemplate extends StatelessWidget {
     super.key,
     required this.child,
     required this.appBarTemplate,
+    this.navigationBar,
+    this.floatingActionButton,
   });
 
   /// The main content widget to be displayed within the screen.
@@ -38,6 +40,10 @@ class ScreenTemplate extends StatelessWidget {
 
   /// The custom `AppBarTemplate` widget to be displayed at the top of the screen.
   final AppBarTemplate appBarTemplate;
+
+  final NavigationBar? navigationBar;
+
+  final FloatingActionButton? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +63,8 @@ class ScreenTemplate extends StatelessWidget {
             ),
           ),
         ),
+        bottomNavigationBar: navigationBar,
+        floatingActionButton: floatingActionButton,
       ),
     );
   }

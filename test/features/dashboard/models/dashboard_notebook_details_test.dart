@@ -23,14 +23,14 @@ void main() {
       .and('the instance should not be null')
       .run((ctx) async {
     // Initialize the necessary variables
-    String notebookId;
+    int notebookId;
     String notebookName;
     double progress;
     int openTasks;
     DashboardNotebookDetails? dashboardNotebookDetails;
 
     // Given: I have a notebook ID "nb123", a notebook name "Physics", progress at 75.0, and 5 open tasks
-    notebookId = 'nb123';
+    notebookId = 1;
     notebookName = 'Physics';
     progress = 0.7;
     openTasks = 5;

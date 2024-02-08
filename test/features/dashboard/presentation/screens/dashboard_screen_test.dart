@@ -9,7 +9,8 @@ import 'package:adhd_prototype/features/dashboard/presentation/blocs/dashboard_b
 import 'package:adhd_prototype/features/dashboard/presentation/blocs/dashboard_state.dart';
 import 'package:adhd_prototype/features/dashboard/presentation/screens/dashboard.dart';
 import 'package:adhd_prototype/shared/dependency_injection/injections.dart';
-import 'package:adhd_prototype/shared/dependency_injection/injections/injection_cubits.dart';
+import 'package:adhd_prototype/shared/dependency_injection/injections/injection_blocs.dart';
+import 'package:adhd_prototype/shared/global_event_bus/global_event_bus.dart';
 import 'package:adhd_prototype/shared/isar_db/isar_db.dart';
 import 'package:adhd_prototype/shared/isar_db/repositories/current_day_task_repository.dart';
 import 'package:adhd_prototype/shared/isar_db/repositories/notebook_repository.dart';
@@ -39,6 +40,7 @@ void main() {
       currentDayTaskRepository: CurrentDayTaskRepository(
         isarDB: IsarDB.instance,
       ),
+      globalEventBus: GlobalEventBus.instance,
     ); // You may need to customize this.
 
     // Wrap the Dashboard widget with a MaterialApp and a BlocProvider

@@ -14,3 +14,7 @@ abstract class DashboardEvent {}
 /// the initialization logic in the [DashboardBloc] to set up the initial state
 /// of the dashboard.
 class DashboardInitialize extends DashboardEvent {}
+
+class UpdateNotebookList extends DashboardEvent {}
+
+class DashboardError extends DashboardEvent {}

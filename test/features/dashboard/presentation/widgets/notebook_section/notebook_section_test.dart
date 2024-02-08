@@ -16,7 +16,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: NotebookSection(),
+              body: NotebookSection(notebooks: [],),
             ),
           ),
         );

@@ -5,6 +5,7 @@
 // Copyright:  2024
 // ID: 20240202100210
 // 02/02/2024 10:02
+import 'package:adhd_prototype/features/notebook/presentation/screens/notebook.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,5 +47,26 @@ final _toDashboard = GoRoute(
       child: child,
     ),
     child: const Dashboard(),
+  ),
+  routes: [
+    _toNotebook,
+  ],
+);
+
+final _toNotebook = GoRoute(
+  path: pathToNotebook,
+  name: pathToNotebook,
+  pageBuilder: (context, state) => CustomTransitionPage(
+    transitionsBuilder: (
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    ) =>
+        FadeTransition(
+      opacity: animation,
+      child: child,
+    ),
+    child: const Notebook(),
   ),
 );

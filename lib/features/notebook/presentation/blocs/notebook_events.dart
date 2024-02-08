@@ -3,9 +3,8 @@
 // Dev Environment: Android Studio
 // Platform: Windows 11
 // Copyright:  2024
-// ID: 20240202110623
-// 02/02/2024 11:06
+// ID: 20240208062137
+// 08/02/2024 06:21
+abstract class NotebookEvent {}
 
-// paths
-const String pathToDashboard = '/';
-const String pathToNotebook = 'notebook';
+class NotebookInitial extends NotebookEvent {}

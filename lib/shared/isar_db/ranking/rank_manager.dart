@@ -21,6 +21,8 @@ class RankManager {
   ///
   /// - [item]: The notebook item to add.
   void addNotebook(RankableItem item) {
+    items.sort((a, b) => a.rank!.compareTo(b.rank ?? ''));
+
     String? lastRank = items.isNotEmpty ? items.last.rank : 'A';
     String newRank = _incrementRank(lastRank ?? '');
     item.rank = newRank;
@@ -40,7 +42,16 @@ class RankManager {
       return;
     }
 
+    items.sort((a, b) => a.rank!.compareTo(b.rank ?? ''));
+
     String? prevRank = position == 0 ? 'A' : items[position - 1].rank;
+
+    if (prevRank == 'A') {
+      item.rank = prevRank;
+      items.insert(position, item);
+      return;
+    }
+
     String? nextRank = position == items.length
         ? _incrementRank(items[position - 1].rank ?? '')
         : items[position].rank;
@@ -61,7 +72,13 @@ class RankManager {
     var newRank = StringBuffer();
     for (int i = rank.length - 1; i >= 0; i--) {
       if (rank[i] != 'Z') {
-        newRank.writeCharCode(rank.codeUnitAt(i) + 1);
+        final codeUnit = rank.codeUnitAt(i) + 5;
+        if (codeUnit > 90) {
+          newRank.writeCharCode(90);
+        } else {
+          newRank.writeCharCode(rank.codeUnitAt(i) + 5);
+        }
+
         newRank.write(rank.substring(i + 1));
         return rank.substring(0, i) + newRank.toString();
       }

@@ -7,7 +7,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'bootstrap.dart';
 import 'shared/dependency_injection/injections.dart';
-import 'shared/dependency_injection/injections/injection_cubits.dart';
+import 'shared/dependency_injection/injections/injection_blocs.dart';
 /// The main entry point of the application.
 Future<void> main() async {
   // Ensure that widgets binding is initialized.

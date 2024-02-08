@@ -31,6 +31,7 @@ class NotebookList extends StatelessWidget {
           notebookName: notebookDetails[index].notebookName,
           progress: notebookDetails[index].progress,
           openTasks: notebookDetails[index].openTasks,
+          notebookId: notebookDetails[index].notebookId,
         ),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
